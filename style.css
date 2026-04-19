@@ -49,7 +49,7 @@ canvas, #grid, .game-container {
 }
 
 /* כפתורי חיצים */
-.controls {
+/*.controls {
     margin: 15px 0;
 }
 
@@ -69,7 +69,7 @@ canvas, #grid, .game-container {
 
 .arrow:active {
     background: #86efac;
-}
+}*/
 
 #start-btn {
     padding: 12px 30px;
