@@ -1,6 +1,6 @@
 # 🐍 Snake Game
 
-![Snake Game Preview](PASTE_IMAGE_URL_HERE)
+![Snake Game Preview](assets/snake picture.png)
 
 Welcome to a modern take on the classic, nostalgic **Snake Game**! This project combines smooth gameplay mechanics with a clean, minimalist design—perfect for a quick break or showing off your high scores.
 
