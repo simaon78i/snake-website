@@ -47,6 +47,10 @@ function move() {
     const hitSelf = squares[currentSnake[0] + direction]?.classList.contains('snake');
 
     if (hitBottom || hitTop || hitRight || hitLeft || hitSelf) {
+        endGame();
+    }
+    function endGame(){
+        
         alert("המשחק נגמר! הניקוד שלך: " + score);
         return clearInterval(timerId);
     }
