@@ -24,7 +24,7 @@ Welcome to a modern take on the classic, nostalgic **Snake Game**! This project 
 ### 🚀 Quick Start
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/your-username/snake-game.git](https://github.com/your-username/snake-game.git)
+    git clone [https://github.com/simaon78i/snake-website.git](https://github.com/simaon78i/snake-website.git)
     ```
 2.  **Open the Project:**
     Navigate to the folder and open `index.html` in your favorite web browser.
