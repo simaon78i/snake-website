@@ -11,6 +11,7 @@ let touchStartX = 0;
 let touchStartY = 0;
 let touchEndX = 0;
 let touchEndY = 0;
+let gameOn = false;
 
 // יצירת הלוח (400 משבצות)
 function createBoard() {
@@ -27,7 +28,7 @@ function startGame() {
     currentSnake.forEach(index => squares[index].classList.remove('snake'));
     squares[appleIndex].classList.remove('apple');
     clearInterval(timerId);
-    
+    gameOn= true;
     score = 0;
     scoreDisplay.innerText = score;
     direction = 1;
@@ -38,7 +39,10 @@ function startGame() {
     timerId = setInterval(move, intervalTime);
 }
 function endGame(){
-        
+        if(!gameOn){
+            return;
+        }
+        gameOn=false;
         alert("המשחק נגמר! הניקוד שלך: " + score);
         return clearInterval(timerId);
 }
