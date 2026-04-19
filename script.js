@@ -7,6 +7,10 @@ let appleIndex = 0;
 let score = 0;
 let timerId = 0;
 let intervalTime = 200;
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
 
 // יצירת הלוח (400 משבצות)
 function createBoard() {
@@ -65,6 +69,40 @@ function move() {
     }
     
     squares[currentSnake[0]].classList.add('snake');
+}
+// מאזין לתחילת מגע
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, false);
+
+// מאזין לסיום מגע
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+    
+    // סף מינימלי לתנועה כדי למנוע זיהוי של לחיצות רגילות כסווייפ
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    
+    if (Math.max(absDx, absDy) > 30) { // 30 פיקסלים מינימום
+        if (absDx > absDy) {
+            // תנועה אופקית (ימינה/שמאלה)
+            // שים לב: הערכים בפונקציית changeDir צריכים להתאים ללוגיקה שלך
+            if (dx > 0) changeDir(-1);  // ימינה
+            else changeDir(1);        // שמאלה
+        } else {
+            // תנועה אנכית (למעלה/למטה)
+            if (dy > 0) changeDir(20); // למטה (בהנחה שרוחב הלוח 20)
+            else changeDir(-20);       // למעלה
+        }
+    }
 }
 
 function generateApple() {
