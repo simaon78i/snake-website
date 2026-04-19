@@ -10,6 +10,10 @@ body {
     margin: 0;
 }
 
+canvas, #grid, .game-container {
+    touch-action: none; /* מונע מהדפדפן לבצע גלילה בתוך אזור המשחק */
+}
+
 .game-container {
     background: white;
     padding: 20px;
