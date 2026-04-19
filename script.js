@@ -37,7 +37,11 @@ function startGame() {
     generateApple();
     timerId = setInterval(move, intervalTime);
 }
-
+function endGame(){
+        
+        alert("המשחק נגמר! הניקוד שלך: " + score);
+        return clearInterval(timerId);
+}
 function move() {
     // בדיקת פסילה (קירות ופגיעה עצמית)
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
@@ -49,11 +53,7 @@ function move() {
     if (hitBottom || hitTop || hitRight || hitLeft || hitSelf) {
         endGame();
     }
-    function endGame(){
-        
-        alert("המשחק נגמר! הניקוד שלך: " + score);
-        return clearInterval(timerId);
-    }
+    
 
     // הזזת הנחש: הסרת זנב
     const tail = currentSnake.pop();
