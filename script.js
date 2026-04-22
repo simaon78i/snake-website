@@ -43,8 +43,6 @@ function endGame() {
     gameOn = false;
     clearInterval(timerId);
     
-    // קודם כל התראה למשתמש
-    alert("המשחק נגמר! הניקוד שלך: " + score);
     
     // קריאה לפונקציה שמציגה את המודל (החלונית)
     showGameOver(score);
@@ -145,7 +143,7 @@ document.addEventListener('keydown', (e) => {
 
 
 
-
+//backend!!!
 
 // פונקציה שנקראת כשהמשחק נגמר (תכניס את הקריאה אליה בתוך הלוגיקה של ה-GameOver שלך)
 function showGameOver(score) {
