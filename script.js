@@ -135,3 +135,59 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') changeDir(1);
     if (e.key === 'ArrowRight') changeDir(-1);
 });
+
+
+
+
+
+
+// פונקציה שנקראת כשהמשחק נגמר (תכניס את הקריאה אליה בתוך הלוגיקה של ה-GameOver שלך)
+function showGameOver(score) {
+    document.getElementById('finalScoreDisplay').innerText = score;
+    document.getElementById('scoreModal').style.display = 'block';
+}
+
+// פונקציה לשליחת התוצאה ל-Backend
+async function submitScore() {
+    const data = {
+        first_name: document.getElementById('firstName').value,
+        last_name: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        score: parseInt(document.getElementById('finalScoreDisplay').innerText)
+    };
+
+    try {
+        const response = await fetch('http://localhost:5000/api/scores', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('Score saved!');
+            document.getElementById('scoreModal').style.display = 'none';
+            loadLeaderboard(); // רענון הטבלה
+        }
+    } catch (error) {
+        console.error('Error saving score:', error);
+    }
+}
+
+// פונקציה למשיכת טבלת השיאים
+async function loadLeaderboard() {
+    try {
+        const response = await fetch('http://localhost:5000/api/scores');
+        const scores = await response.json();
+        
+        const list = document.getElementById('scoreList');
+        list.innerHTML = scores.map(s => 
+            `<li>${s.first_name} ${s.last_name}: <b>${s.score}</b></li>`
+        ).join('');
+    } catch (error) {
+        console.error('Error loading leaderboard:', error);
+    }
+}
+
+// טעינה ראשונית של הטבלה כשהדף עולה
+window.onload = loadLeaderboard;
+ז
