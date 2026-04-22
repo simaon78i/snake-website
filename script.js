@@ -157,7 +157,7 @@ async function submitScore() {
     };
 
     try {
-        const response = await fetch('http://localhost:5000/api/scores', {
+        const response = await fetch('https://snake-api-shimon.onrender.com/api/scores', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -176,7 +176,7 @@ async function submitScore() {
 // פונקציה למשיכת טבלת השיאים
 async function loadLeaderboard() {
     try {
-        const response = await fetch('http://localhost:5000/api/scores');
+        const response = await fetch('https://snake-api-shimon.onrender.com/api/scores');
         const scores = await response.json();
         
         const list = document.getElementById('scoreList');
