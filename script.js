@@ -38,40 +38,45 @@ function startGame() {
     generateApple();
     timerId = setInterval(move, intervalTime);
 }
-function endGame(){
-        if(!gameOn){
-            return;
-        }
-        gameOn=false;
-        alert("המשחק נגמר! הניקוד שלך: " + score);
-        showGameOver(score);
-        return clearInterval(timerId);
+function endGame() {
+    if (!gameOn) return;
+    gameOn = false;
+    clearInterval(timerId);
+    
+    // קודם כל התראה למשתמש
+    alert("המשחק נגמר! הניקוד שלך: " + score);
+    
+    // קריאה לפונקציה שמציגה את המודל (החלונית)
+    showGameOver(score);
 }
+
 function move() {
-    // בדיקת פסילה (קירות ופגיעה עצמית)
+    // חישוב המיקום הבא של הראש
+    const nextIndex = currentSnake[0] + direction;
+
+    // בדיקת פסילה (קירות)
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
     const hitTop = (currentSnake[0] - 20 < 0 && direction === -20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
     const hitLeft = (currentSnake[0] % 20 === 0 && direction === -1);
-    const hitSelf = squares[currentSnake[0] + direction]?.classList.contains('snake');
+    
+    // בדיקת פגיעה עצמית - רק אם האינדקס הבא קיים בלוח
+    const hitSelf = squares[nextIndex] && squares[nextIndex].classList.contains('snake');
 
     if (hitBottom || hitTop || hitRight || hitLeft || hitSelf) {
-        endGame();
+        return endGame(); // יציאה מהפונקציה כדי לא להמשיך להזיז
     }
-    
 
-    // הזזת הנחש: הסרת זנב
+    // הזזת הנחש
     const tail = currentSnake.pop();
     squares[tail].classList.remove('snake');
-    
-    // הוספת ראש
-    currentSnake.unshift(currentSnake[0] + direction);
+    currentSnake.unshift(nextIndex);
 
-    // בדיקת אכילת תפוח
+    // אכילת תפוח
     if (squares[currentSnake[0]].classList.contains('apple')) {
         squares[currentSnake[0]].classList.remove('apple');
         squares[tail].classList.add('snake');
-        currentSnake.push(tail); // גדילה
+        currentSnake.push(tail);
         score++;
         scoreDisplay.innerText = score;
         generateApple();
