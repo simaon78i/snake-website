@@ -44,6 +44,7 @@ function endGame(){
         }
         gameOn=false;
         alert("המשחק נגמר! הניקוד שלך: " + score);
+        showGameOver(score);
         return clearInterval(timerId);
 }
 function move() {
