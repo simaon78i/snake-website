@@ -196,4 +196,3 @@ async function loadLeaderboard() {
 
 // טעינה ראשונית של הטבלה כשהדף עולה
 window.onload = loadLeaderboard;
-ז
