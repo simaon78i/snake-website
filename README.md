@@ -1,54 +1,49 @@
-# 🐍 Snake Game
+# 🐍 Snake App - Full Stack & Dockerized
 
-Welcome to a modern take on the classic, nostalgic **Snake Game**! This project combines smooth gameplay mechanics with a clean, minimalist design—perfect for a quick break or showing off your high scores.
+A modern, high-performance take on the classic Snake game. This project isn't just about the gameplay—it’s a full-scale **3-Tier Architecture** demonstration, featuring a decoupled frontend, a containerized backend, and a cloud-hosted relational database.
 
 ---
 
 ### ✨ Key Features
-* **Classic Gameplay:** The authentic snake experience we all know and love.
-* **Responsive Controls:** Optimized for smooth movement and precise turns.
-* **Live Score Tracking:** Keep an eye on your progress in real-time as you grow.
-* **Clean UI/UX:** Features a custom-designed favicon and a dark, grid-based aesthetic for maximum focus.
-
----
-
-### 🎮 How to Play
-> **Objective:** Eat as much food as possible to grow your snake without hitting the walls or your own tail!
-
-* **Move:** Use the **Arrow Keys** (Up, Down, Left, Right) or **WASD** to steer.
-* **Score:** Each piece of food consumed increases your length and your total points.
-* **Game Over:** The round ends if you collide with the screen boundaries or overlap with your snake's body.
-
----
-
-### 🚀 Quick Start
-1.  **Clone the Repository:**
-    ```bash
-    git clone [https://github.com/simaon78i/snake-website.git](https://github.com/simaon78i/snake-website.git)
-    ```
-2.  **Open the Project:**
-    Navigate to the folder and open `index.html` in your favorite web browser.
-3.  **Play:**
-    Press any directional key to start moving!
+* **Global High Scores:** Your scores aren't just local. They are sent via a REST API to a central database.
+* **Dockerized Backend:** The API server is fully containerized for consistent deployment across any environment.
+* **Cloud Integration:** Real-time data sync between GitHub Pages (Frontend), Render (Backend), and Neon (Database).
+* **Responsive Logic:** Smooth movement physics with collision detection and dynamic growth.
 
 ---
 
 ### 🛠️ Tech Stack
-* **HTML5 Canvas:** For high-performance graphics rendering.
-* **CSS3:** For a sleek, modern, and dark-themed interface.
-* **JavaScript (ES6+):** Handling the game logic, collision detection, and movement physics.
+
+| Layer | Technology | Hosting |
+| :--- | :--- | :--- |
+| **Frontend** | HTML5, CSS3, JavaScript (ES6+) | GitHub Pages |
+| **Backend** | Node.js, Express.js, Docker | Render |
+| **Database** | PostgreSQL | Neon (Serverless Postgres) |
+| **DevOps** | CI/CD Pipeline, Dockerfile, Env Vars | GitHub Actions |
 
 ---
 
-### 🖼️ Preview
-<div align="center">
-  <img src="assets/snake picture.png" alt="Snake Game UI" width="600">
-  <p><i>The modern grid interface with responsive mobile controls.</i></p>
-</div>
+### 🏗️ Architecture Overview
+
+1. **Client (Presentation):** The vanilla JavaScript frontend handles game loops and UI. It communicates with the backend via `fetch` API.
+2. **Server (Application):** A Node.js container running in a Dockerized environment. It validates data and manages the connection pool to the database.
+3. **Database (Data):** A PostgreSQL instance storing player names, emails, and high scores with timestamping.
 
 ---
 
-### 📈 Future Roadmap
-* [ ] Add a "Hard Mode" with increasing speeds.
-* [ ] Implement a Global High Score leaderboard.
-* [ ] Add sound effects and haptic feedback.
+### 🎮 How to Play
+
+> **Objective:** Eat the apples to grow and set a new world record! Avoid hitting the walls or your own tail.
+
+* **Steer:** Use **Arrow Keys** or **WASD**.
+* **Submit:** Once the game ends, a modal will prompt you to save your score to the global leaderboard.
+
+---
+
+### 🚀 Developer Setup
+
+To run the backend locally using Docker:
+
+1. **Clone the Backend Repository:**
+   ```bash
+   git clone [https://github.com/simaon78i/snake_backend.git](https://github.com/simaon78i/snake_backend.git)
