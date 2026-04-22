@@ -4,6 +4,14 @@ A modern, high-performance take on the classic Snake game. This project isn't ju
 
 ---
 
+### 🖼️ Preview
+<div align="center">
+  <img src="assets/snake picture.png" alt="Snake Game Gameplay" width="700">
+  <p><i>The modern grid interface featuring global leaderboard integration.</i></p>
+</div>
+
+---
+
 ### ✨ Key Features
 * **Global High Scores:** Your scores aren't just local. They are sent via a REST API to a central database.
 * **Dockerized Backend:** The API server is fully containerized for consistent deployment across any environment.
@@ -47,3 +55,12 @@ To run the backend locally using Docker:
 1. **Clone the Backend Repository:**
    ```bash
    git clone [https://github.com/simaon78i/snake_backend.git](https://github.com/simaon78i/snake_backend.git)
+2. **Build the Docker Image:**
+   ```bash
+   docker build -t snake-api .
+3. **Run the Container:**
+   ```bash
+   docker run -p 10000:10000 --env DATABASE_URL="your_connection_string" snake-api
+   
+
+   
