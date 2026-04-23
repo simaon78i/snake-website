@@ -15,9 +15,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    
+    /* FIX: Use 100vh for desktop and 100% for mobile to prevent overflow */
+    height: 100vh; 
+    width: 100vw;
     margin: 0;
     flex-direction: column;
+
+    /* 1. LOCK SCROLLING: Prevents the user from scrolling the page */
+    overflow: hidden; 
+
+    /* 2. FIX FOR MOBILE BOUNCE: Stops the "elastic" scroll on iOS/Android */
+    position: fixed; 
+    overscroll-behavior: none;
+
+    /* 3. NO TEXT SELECTION: Prevents accidental highlighting while tapping fast */
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 canvas, #grid, .game-container {
