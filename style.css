@@ -1,80 +1,71 @@
+/* 1. Import Stylish Fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:wght@700&display=swap');
+
 body {
-    /* Set the background image and ensure it covers the entire viewport */
+    /* Background Image setup */
     background-image: url('assets/background.png');
-    
-    /* Background scaling logic: 'cover' ensures the image fills the screen, 
-       while 'center' keeps the most important details (the snake) visible on mobile. */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Fixed background creates a modern parallax feel */
+    background-attachment: fixed;
 
-    /* Typography and layout: Changed text color to white for visibility against the dark background */
+    /* Base Typography and Layout */
     color: #ffffff; 
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     flex-direction: column;
 }
 
 canvas, #grid, .game-container {
-    /* Critical for mobile: disables default browser gestures like scrolling or zooming during play */
+    /* Critical for mobile: prevents scrolling during gameplay */
     touch-action: none; 
 }
 
+/* 2. Main Game Container - Glassmorphism style */
 .game-container {
-    /* Glassmorphism effect: Semi-transparent background with a blur filter */
-    background: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* Safari support */
-
+    -webkit-backdrop-filter: blur(8px);
     padding: 20px;
     border-radius: 20px;
-    
-    /* Shadow and border provide depth and definition against the dark background image */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    
     text-align: center;
 }
 
-/* The Game Board - 20x20 Grid */
+/* 3. Game Grid - 20x20 */
 #grid {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     width: 300px;
     height: 300px;
     margin: 20px auto;
-    
-    /* Subtle background for the grid area to distinguish it from the container */
     background: rgba(255, 255, 255, 0.05);
-    border: 4px solid rgba(34, 197, 94, 0.3); /* Transparent green border */
+    border: 4px solid rgba(34, 197, 94, 0.3);
 }
 
 #grid div {
-    /* Grid line visibility is minimized for a cleaner look */
     border: 0.1px solid rgba(241, 245, 249, 0.05);
 }
 
-/* Game elements: Fully opaque to ensure high gameplay visibility */
+/* 4. Game Elements - Fully opaque */
 .snake {
-    background-color: #22c55e; /* Vibrant green */
+    background-color: #22c55e;
     border-radius: 2px;
-    box-shadow: 0 0 10px #22c55e; /* Glow effect for a neon look */
+    box-shadow: 0 0 10px #22c55e;
 }
 
 .apple {
-    background-color: #ef4444; /* Vibrant red */
+    background-color: #ef4444;
     border-radius: 50%;
     box-shadow: 0 0 10px #ef4444;
 }
 
-/* MOBILE CONTROLS (Commented out for student exercise)
-   Student Task: Enable these styles and use @media queries to show them only on mobile devices.
-*/
+/* 5. ARROW CONTROLS (Commented out for student exercise) */
 /*
 .controls {
     margin: 15px 0;
@@ -95,7 +86,7 @@ canvas, #grid, .game-container {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent glass style 
+    background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(134, 239, 172, 0.4);
     color: #ffffff;
     border-radius: 12px;
@@ -108,83 +99,73 @@ canvas, #grid, .game-container {
 
 .arrow:active {
     background: rgba(34, 197, 94, 0.4);
-    transform: scale(0.9); /* Tactile feedback on press 
+    transform: scale(0.9);
 }
 */
 
-#start-btn, #end-btn {
+/* 6. GOLDEN TYPOGRAPHY (The "Beautiful Fonts") */
+/* Applies the golden curly look to all main titles */
+h1, h3, #leaderboard h3 {
+    font-family: 'Lobster', cursive; /* The curly font you wanted */
+    font-size: 2.2rem;
+    margin: 15px 0;
+    
+    /* Golden Gradient API */
+    background: linear-gradient(to bottom, #cf9d1d 0%, #ffdb6e 50%, #c9930b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px rgba(201, 147, 11, 0.4));
+}
+
+#scoreList {
+    list-style: none;
+    padding: 0;
+    font-family: 'Playfair Display', serif; /* Sophisticated list font */
+}
+
+#scoreList li {
+    font-size: 1.3rem;
+    margin: 10px 0;
+    color: #ffd700; /* Solid Gold fallback */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+#scoreList li b {
+    color: #ffffff;
+    text-shadow: 0 0 8px #ffd700;
+}
+
+/* 7. Game Over Modal Styling */
+#scoreModal {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(15px);
+    border: 2px solid #cf9d1d !important;
+    color: white;
+}
+
+#scoreModal input {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #cf9d1d;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* 8. Main Buttons */
+#start-btn, #end-btn, button[onclick="submitScore()"] {
     padding: 12px 30px;
-    background: #16a34a; /* Professional green CTA */
+    background: #16a34a;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 18px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+    transition: all 0.2s ease;
 }
 
 #start-btn:hover, #end-btn:hover {
     background: #15803d;
     transform: scale(1.05);
-}
-
-
-
-
-
-/*curly font right here*/
-
-
-/* Import a stylish, slightly "curly" and bold font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:wght@700&display=swap');
-
-/* Style for the Leaderboard Title (e.g., "Top 3 Global High Scores") */
-.game-container h2 {
-    font-family: 'Lobster', cursive; /* Curly and elegant font */
-    font-size: 2.5rem;
-    
-    /* Golden Gradient Effect */
-    background: linear-gradient(to bottom, #cf9d1d 0%, #ffdb6e 50%, #c9930b 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* Adding a glow to make the gold pop against the dark background */
-    filter: drop-shadow(0 0 5px rgba(201, 147, 11, 0.5));
-    margin-bottom: 20px;
-}
-
-/* Style for the Score List items */
-#scoreList {
-    list-style: none;
-    padding: 0;
-    font-family: 'Playfair Display', serif; /* Sophisticated serif font */
-}
-
-#scoreList li {
-    font-size: 1.4rem;
-    margin: 10px 0;
-    padding: 8px;
-    
-    /* Elegant gold color */
-    color: #ffd700; 
-    
-    /* Text shadow to ensure readability over the background images */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(218, 165, 32, 0.4);
-    
-    border-bottom: 1px solid rgba(255, 215, 0, 0.1); /* Subtle divider */
-    transition: transform 0.3s ease;
-}
-
-/* Hover effect for a dynamic feel */
-#scoreList li:hover {
-    transform: scale(1.05);
-    color: #ffffff; /* Turns white on hover for focus */
-}
-
-/* Specific styling for the score numbers to make them stand out */
-#scoreList li b {
-    font-size: 1.6rem;
-    color: #ffffff;
-    margin-left: 10px;
-    text-shadow: 0 0 10px #ffd700; /* Gold glow for the numbers */
 }
