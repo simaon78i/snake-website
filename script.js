@@ -25,6 +25,7 @@ createBoard();
 
 function startGame() {
     // איפוס
+    startMusic();
     currentSnake.forEach(index => squares[index].classList.remove('snake'));
     squares[appleIndex].classList.remove('apple');
     clearInterval(timerId);
@@ -41,6 +42,7 @@ function startGame() {
 function endGame() {
     if (!gameOn) return;
     gameOn = false;
+    playGameOverSound();
     clearInterval(timerId);
     
     
@@ -73,6 +75,7 @@ function move() {
     // אכילת תפוח
     if (squares[currentSnake[0]].classList.contains('apple')) {
         squares[currentSnake[0]].classList.remove('apple');
+        playEatSound();
         squares[tail].classList.add('snake');
         currentSnake.push(tail);
         score++;
@@ -141,6 +144,43 @@ document.addEventListener('keydown', (e) => {
 });
 
 
+// 1. Initialize audio assets
+// Ensure these files exist in your 'assets/sounds/' folder
+const bgMusic = new Audio('assets/music.mp3');
+const eatSound = new Audio('assets/eat.mp3');
+const gameOverSound = new Audio('assets/gameOver.mp3');
+
+// 2. Configure Background Music
+bgMusic.loop = true; // Make the music repeat
+bgMusic.volume = 0.3; // Set volume to 30% to keep it subtle
+
+/**
+ * Handles the sound logic when the snake eats an apple.
+ */
+function playEatSound() {
+    // Reset sound to start to allow rapid playing if multiple apples are eaten
+    eatSound.currentTime = 0; 
+    eatSound.play();
+}
+
+/**
+ * Handles sound transitions when the game ends.
+ */
+function playGameOverSound() {
+    bgMusic.pause(); // Stop the background music
+    bgMusic.currentTime = 0; // Reset music to the beginning
+    gameOverSound.play();
+}
+
+/**
+ * Starts the game music. 
+ * Must be called inside a user-triggered event (like startGame).
+ */
+function startMusic() {
+    bgMusic.play().catch(error => {
+        console.log("Autoplay prevented. Music will start after user interaction.");
+    });
+}
 
 
 //backend!!!
