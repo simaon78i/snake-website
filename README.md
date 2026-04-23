@@ -6,7 +6,7 @@ A modern, high-performance take on the classic Snake game. This project isn't ju
 
 ### 🖼️ Preview
 <div align="center">
-  <img src="assets/advanced.png" alt="Snake Game Gameplay" width="700">
+  <img src="assets/final.png" alt="Snake Game Gameplay" width="700">
   <p><i>The modern glassmorphism interface featuring global leaderboard integration.</i></p>
 </div>
 
