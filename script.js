@@ -14,7 +14,8 @@ let touchEndY = 0;
 let gameOn = false;
 
 // יצירת הלוח (400 משבצות)
-function createBoard() {
+function createBoard()
+{
     for (let i = 0; i < 400; i++) {
         const square = document.createElement('div');
         grid.appendChild(square);
