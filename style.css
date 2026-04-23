@@ -127,3 +127,64 @@ canvas, #grid, .game-container {
     background: #15803d;
     transform: scale(1.05);
 }
+
+
+
+
+
+/*curly font right here*/
+
+
+/* Import a stylish, slightly "curly" and bold font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:wght@700&display=swap');
+
+/* Style for the Leaderboard Title (e.g., "Top 3 Global High Scores") */
+.game-container h2 {
+    font-family: 'Lobster', cursive; /* Curly and elegant font */
+    font-size: 2.5rem;
+    
+    /* Golden Gradient Effect */
+    background: linear-gradient(to bottom, #cf9d1d 0%, #ffdb6e 50%, #c9930b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Adding a glow to make the gold pop against the dark background */
+    filter: drop-shadow(0 0 5px rgba(201, 147, 11, 0.5));
+    margin-bottom: 20px;
+}
+
+/* Style for the Score List items */
+#scoreList {
+    list-style: none;
+    padding: 0;
+    font-family: 'Playfair Display', serif; /* Sophisticated serif font */
+}
+
+#scoreList li {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    padding: 8px;
+    
+    /* Elegant gold color */
+    color: #ffd700; 
+    
+    /* Text shadow to ensure readability over the background images */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(218, 165, 32, 0.4);
+    
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1); /* Subtle divider */
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect for a dynamic feel */
+#scoreList li:hover {
+    transform: scale(1.05);
+    color: #ffffff; /* Turns white on hover for focus */
+}
+
+/* Specific styling for the score numbers to make them stand out */
+#scoreList li b {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-left: 10px;
+    text-shadow: 0 0 10px #ffd700; /* Gold glow for the numbers */
+}
