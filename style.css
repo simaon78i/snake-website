@@ -1,7 +1,16 @@
-/* עיצוב כללי */
 body {
-    background-color: #f0fdf4; /* ירוק בהיר מאוד ונעים */
-    color: #166534;
+    /* Set the background image and ensure it covers the entire viewport */
+    background-image: url('assets/background.png');
+    
+    /* Background scaling logic: 'cover' ensures the image fills the screen, 
+       while 'center' keeps the most important details (the snake) visible on mobile. */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixed background creates a modern parallax feel */
+
+    /* Typography and layout: Changed text color to white for visibility against the dark background */
+    color: #ffffff; 
     font-family: sans-serif;
     display: flex;
     justify-content: center;
@@ -12,46 +21,72 @@ body {
 }
 
 canvas, #grid, .game-container {
-    touch-action: none; /* מונע מהדפדפן לבצע גלילה בתוך אזור המשחק */
+    /* Critical for mobile: disables default browser gestures like scrolling or zooming during play */
+    touch-action: none; 
 }
 
 .game-container {
-    background: white;
+    /* Glassmorphism effect: Semi-transparent background with a blur filter */
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    
+    /* Shadow and border provide depth and definition against the dark background image */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
     text-align: center;
 }
 
-/* הלוח - 20 על 20 */
+/* The Game Board - 20x20 Grid */
 #grid {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     width: 300px;
     height: 300px;
     margin: 20px auto;
-    background: #f8fafc;
-    border: 4px solid #bbf7d0;
+    
+    /* Subtle background for the grid area to distinguish it from the container */
+    background: rgba(255, 255, 255, 0.05);
+    border: 4px solid rgba(34, 197, 94, 0.3); /* Transparent green border */
 }
 
 #grid div {
-    border: 0.1px solid #f1f5f9;
+    /* Grid line visibility is minimized for a cleaner look */
+    border: 0.1px solid rgba(241, 245, 249, 0.05);
 }
 
-/* אלמנטים במשחק */
+/* Game elements: Fully opaque to ensure high gameplay visibility */
 .snake {
-    background-color: #22c55e; /* ירוק חי */
+    background-color: #22c55e; /* Vibrant green */
     border-radius: 2px;
+    box-shadow: 0 0 10px #22c55e; /* Glow effect for a neon look */
 }
 
 .apple {
-    background-color: #ef4444; /* אדום */
+    background-color: #ef4444; /* Vibrant red */
     border-radius: 50%;
+    box-shadow: 0 0 10px #ef4444;
 }
 
-/* כפתורי חיצים */
-/*.controls {
+/* MOBILE CONTROLS (Commented out for student exercise)
+   Student Task: Enable these styles and use @media queries to show them only on mobile devices.
+*/
+/*
+.controls {
     margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.arrow-row {
+    display: flex;
+    gap: 10px;
 }
 
 .arrow {
@@ -59,25 +94,36 @@ canvas, #grid, .game-container {
     height: 60px;
     font-size: 24px;
     font-weight: bold;
-    margin: 4px;
     cursor: pointer;
-    background: #dcfce7;
-    border: 2px solid #86efac;
-    color: #166534;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent glass style 
+    border: 2px solid rgba(134, 239, 172, 0.4);
+    color: #ffffff;
     border-radius: 12px;
-    transition: background 0.2s;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .arrow:active {
-    background: #86efac;
-}*/
+    background: rgba(34, 197, 94, 0.4);
+    transform: scale(0.9); /* Tactile feedback on press 
+}
+*/
 
-#start-btn,#end-btn{
+#start-btn, #end-btn {
     padding: 12px 30px;
-    background: #16a34a;
+    background: #16a34a; /* Professional green CTA */
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 18px;
     cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#start-btn:hover, #end-btn:hover {
+    background: #15803d;
+    transform: scale(1.05);
 }
