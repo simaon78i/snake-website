@@ -38,10 +38,14 @@
         <input type="email" id="email" placeholder="Email" required><br><br>
         <p>Your Score: <span id="finalScoreDisplay">0</span></p>
         <button onclick="submitScore()" style="padding:10px 20px; cursor:pointer; background:#2ecc71; color:white; border:none; border-radius:5px;">Submit Score</button>
+        <br/>
+        <button onclick="(() => document.getElementById('scoreModal').style.display = 'none')()" 
+        style="padding:10px 20px; cursor:pointer; background:#95a5a6; color:white; border:none; border-radius:5px;"> Skip
+        </button>
     </div>
 
     <div id="leaderboard" style="margin-top: 20px;">
-        <h3>🏆 Top 3 Global High Scores</h3>
+        <h3>🏆 טבלת שיאים</h3>
         <ul id="scoreList">
         </ul>
 </div>
